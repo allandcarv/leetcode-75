@@ -24,8 +24,8 @@ Constraints:
  */
 
 function increasingTriplet(nums: number[]): boolean {
-  let firstValue = Infinity;
-  let secondValue = Infinity;
+  let firstValue = Infinity; // 5 - 4 - 3 - 2 - 1
+  let secondValue = Infinity; // Infinity - Infinity - Infinity - Infinity - Infinity
 
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] <= firstValue) {
