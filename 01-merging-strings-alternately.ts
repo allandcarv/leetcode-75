@@ -35,19 +35,19 @@ Constraints:
 word1 and word2 consist of lowercase English letters.
  */
 
-function mergeAlternately(word1: string, word2: string): string {
-  const shorterString = word1.length <= word2.length ? word1 : word2;
-  const longerString = shorterString === word1 ? word2 : word1;
+const mergeAlternately = (word1: string, word2: string): string => {
+  const shorterWord = word1.length <= word2.length ? word1 : word2;
+  const longerWord = shorterWord === word1 ? word2 : word1;
 
   const result: string[] = [];
 
-  for (let i = 0; i < shorterString.length; i++) {
-    result.push(`${word1[i]}${word2[i]}`);
+  for (let i = 0; i < shorterWord.length; i++) {
+    result.push(word1[i], word2[i]);
   }
 
-  if (longerString.length > shorterString.length) {
-    result.push(longerString.slice(shorterString.length));
+  if (longerWord.length > shorterWord.length) {
+    result.push(longerWord.slice(shorterWord.length));
   }
 
   return result.join('');
-}
+};
