@@ -20,24 +20,30 @@ There are no two adjacent flowers in flowerbed.
 0 <= n <= flowerbed.length
  */
 
-function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+const canPlaceFlowers = (flowerbed: number[], n: number): boolean => {
+  if (n === 0) {
+    return true;
+  }
+
   let count = 0;
 
   for (let i = 0; i < flowerbed.length; i++) {
-    if (count === n) {
-      break;
+    if (
+      flowerbed[i] === 0 &&
+      flowerbed[i - 1] !== 1 &&
+      flowerbed[i + 1] !== 1
+    ) {
+      flowerbed[i] = 1;
+      count += 1;
     }
 
-    const spot = flowerbed[i];
-
-    if (spot === 0 && flowerbed[i - 1] !== 1 && flowerbed[i + 1] !== 1) {
-      flowerbed[i] = 1;
-      count++;
+    if (count === n) {
+      return true;
     }
   }
 
-  return count === n;
-}
+  return false;
+};
 
 console.log(canPlaceFlowers([1, 0, 0, 0, 1], 2));
 console.log(canPlaceFlowers([0, 0, 1, 0, 1], 1));
