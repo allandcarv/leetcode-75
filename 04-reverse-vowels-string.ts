@@ -21,15 +21,15 @@ Constraints:
 s consist of printable ASCII characters.
  */
 
-function reverseVowels(s: string): string {
-  const reversedVowels = s.match(/[aeiou]/gi);
+const reverseVowels = (s: string): string => {
+  const vowels = s.match(/[aeiou]/gi);
 
-  if (!reversedVowels) {
+  if (!vowels) {
     return s;
   }
 
-  return s.replace(/[aeiou]/gi, () => reversedVowels.pop() ?? '');
-}
+  return s.replace(/[aeiou]/gi, (match) => vowels.pop() ?? match);
+};
 
 console.log(reverseVowels('IceCreAm'));
 console.log(reverseVowels('leetcode'));
