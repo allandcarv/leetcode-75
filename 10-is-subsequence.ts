@@ -24,17 +24,18 @@ s and t consist only of lowercase English letters.
  */
 
 function isSubsequence(s: string, t: string): boolean {
-  let ptr = 0;
-  let count = s.length;
+  let sPtr = 0;
+  let tPtr = 0;
 
-  for (let i = 0; i < t.length; i++) {
-    if (t[i] === s[ptr]) {
-      ptr++;
-      count--;
+  while (sPtr < s.length && tPtr < t.length) {
+    if (s[sPtr] === t[tPtr]) {
+      sPtr++;
     }
+
+    tPtr++;
   }
 
-  return count === 0;
+  return sPtr === s.length;
 }
 
 console.log(1, isSubsequence('ace', 'abcde'));
