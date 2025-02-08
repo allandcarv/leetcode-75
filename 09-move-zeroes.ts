@@ -23,16 +23,16 @@ Follow up: Could you minimize the total number of operations done?
  Do not return anything, modify nums in-place instead.
  */
 const moveZeroes = (nums: number[]): void => {
-  let ptr = 0;
+  let nonZeroIdx = 0;
 
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] !== 0) {
-      nums[ptr] = nums[i];
-      ptr += 1;
+      nums[nonZeroIdx] = nums[i];
+      nonZeroIdx += 1;
     }
   }
 
-  nums.fill(0, ptr);
+  nums.fill(0, nonZeroIdx);
 };
 
 const nums1 = [0, 1, 0, 3, 12];

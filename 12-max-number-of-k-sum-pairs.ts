@@ -27,50 +27,20 @@ Constraints:
 1 <= k <= 109
  */
 
-// function maxOperations(nums: number[], k: number): number {
-//   const filteredNums = nums.filter((n) => n < k).sort((a, b) => a - b);
-
-//   let leftPtr = 0;
-//   let rightPtr = filteredNums.length - 1;
-
-//   let totalOps = 0;
-
-//   while (leftPtr < rightPtr) {
-//     const currSum = filteredNums[leftPtr] + filteredNums[rightPtr];
-
-//     if (currSum === k) {
-//       totalOps++;
-
-//       leftPtr++;
-//       rightPtr--;
-//     } else if (currSum > k) {
-//       rightPtr--;
-//     } else {
-//       leftPtr++;
-//     }
-//   }
-
-//   return totalOps;
-// }
-
 function maxOperations(nums: number[], k: number): number {
-  let operations = 0;
-  // HashMap
   const diffMap = new Map<number, number>();
+  let operations = 0;
 
-  for (let num of nums) {
-    if (num < k) {
-      // Calculate the difference between the total value and current number
-      const complement = k - num;
-      // Check if the difference is already present
-      const differenceCount = diffMap.get(complement);
+  for (const num of nums) {
+    if (k > num) {
+      const diff = k - num;
 
-      // If the diff is present, decrease the number of occurrences and increase the operations
-      if (differenceCount) {
-        diffMap.set(complement, differenceCount - 1);
-        operations++;
+      const diffOccurrences = diffMap.get(diff);
+
+      if (diffOccurrences) {
+        operations += 1;
+        diffMap.set(diff, diffOccurrences - 1);
       } else {
-        // if not, add/update the current number to the occurrences list
         diffMap.set(num, (diffMap.get(num) ?? 0) + 1);
       }
     }

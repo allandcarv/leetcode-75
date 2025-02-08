@@ -36,18 +36,22 @@ word1 and word2 consist of lowercase English letters.
  */
 
 const mergeAlternately = (word1: string, word2: string): string => {
-  const shorterWord = word1.length <= word2.length ? word1 : word2;
-  const longerWord = shorterWord === word1 ? word2 : word1;
+  let result = '';
+  const longestWord = Math.max(word1.length, word2.length);
 
-  const result: string[] = [];
+  for (let i = 0; i < longestWord; i++) {
+    if (word1[i]) {
+      result += word1[i];
+    }
 
-  for (let i = 0; i < shorterWord.length; i++) {
-    result.push(word1[i], word2[i]);
+    if (word2[i]) {
+      result += word2[i];
+    }
   }
 
-  if (longerWord.length > shorterWord.length) {
-    result.push(longerWord.slice(shorterWord.length));
-  }
-
-  return result.join('');
+  return result;
 };
+
+console.log(mergeAlternately('abc', 'pqr'));
+console.log(mergeAlternately('ab', 'pqrs'));
+console.log(mergeAlternately('abcd', 'pq'));

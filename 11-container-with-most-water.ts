@@ -22,26 +22,19 @@ Output: 1
  */
 
 function maxArea(height: number[]): number {
-  let leftPtr = 0;
-  let rightPtr = height.length - 1;
+  let maxArea = -Infinity;
+  let head = 0;
+  let tail = height.length - 1;
 
-  let maxArea = 0;
+  while (head < tail) {
+    const rectWidth = tail - head;
+    const rectHeight = Math.min(height[head], height[tail]);
+    maxArea = Math.max(maxArea, rectWidth * rectHeight);
 
-  while (leftPtr < rightPtr) {
-    const smallest = height[leftPtr] < height[rightPtr] ? leftPtr : rightPtr;
-
-    const currWidth = rightPtr - leftPtr;
-    const currHeight = height[smallest];
-    const currArea = currHeight * currWidth;
-
-    if (currArea > maxArea) {
-      maxArea = currArea;
-    }
-
-    if (smallest === leftPtr) {
-      leftPtr++;
+    if (height[head] <= height[tail]) {
+      head += 1;
     } else {
-      rightPtr--;
+      tail -= 1;
     }
   }
 

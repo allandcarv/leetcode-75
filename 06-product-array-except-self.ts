@@ -24,26 +24,20 @@ Follow up: Can you solve the problem in O(1) extra space complexity?
  */
 
 function productExceptSelf(nums: number[]): number[] {
-  const prefix = new Array(nums.length);
-  const postfix = new Array(nums.length);
-  const result = new Array(nums.length);
+  const prefix: number[] = [];
+  const postfix: number[] = [];
+  const result: number[] = [];
 
   for (let i = 0; i < nums.length; i++) {
-    const math = (prefix[i - 1] ?? 1) * nums[i];
-
-    prefix[i] = math;
+    prefix.push((prefix[i - 1] ?? 1) * nums[i]);
   }
 
   for (let i = nums.length - 1; i >= 0; i--) {
-    const math = (postfix[i + 1] ?? 1) * nums[i];
-
-    postfix[i] = math;
+    postfix[i] = (postfix[i + 1] ?? 1) * nums[i];
   }
 
   for (let i = 0; i < nums.length; i++) {
-    const math = (prefix[i - 1] ?? 1) * (postfix[i + 1] ?? 1);
-
-    result[i] = math;
+    result.push((prefix[i - 1] ?? 1) * (postfix[i + 1] ?? 1));
   }
 
   return result;

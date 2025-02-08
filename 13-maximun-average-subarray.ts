@@ -24,16 +24,20 @@ function findMaxAverage(nums: number[], k: number): number {
   let currSum = 0;
   let maxSum = -Infinity;
   let windowStart = 0;
+  let windowEnd = 0;
 
-  for (let windowEnd = 0; windowEnd < nums.length; windowEnd++) {
+  while (windowEnd < nums.length) {
     currSum += nums[windowEnd];
 
     if (windowEnd - windowStart === k - 1) {
       maxSum = Math.max(maxSum, currSum);
 
       currSum -= nums[windowStart];
-      windowStart++;
+
+      windowStart += 1;
     }
+
+    windowEnd += 1;
   }
 
   return maxSum / k;
@@ -41,3 +45,4 @@ function findMaxAverage(nums: number[], k: number): number {
 
 console.log(findMaxAverage([1, 12, -5, -6, 50, 3], 4));
 console.log(findMaxAverage([-1], 1));
+console.log(findMaxAverage([5], 1));

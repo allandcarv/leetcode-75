@@ -22,16 +22,11 @@ s consist of printable ASCII characters.
  */
 
 const reverseVowels = (s: string): string => {
-  const vowels = s.match(/[aeiou]/gi);
+  const reversedVowels = s.match(/[aeiou]/gi);
 
-  if (!vowels) {
-    return s;
-  }
-
-  return s.replace(/[aeiou]/gi, (match) => vowels.pop() ?? match);
+  return s.replace(/[aeiou]/gi, (match) => reversedVowels?.pop() ?? match);
 };
 
-console.log(reverseVowels('IceCreAm'));
 console.log(reverseVowels('leetcode'));
 console.log(reverseVowels('xyz'));
 console.log(reverseVowels('a'));

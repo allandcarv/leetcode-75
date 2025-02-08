@@ -40,27 +40,32 @@ function compress(chars: string[]): number {
   let totalCurrChar = 1;
 
   for (let i = 1; i <= chars.length; i++) {
-    if (currChar !== chars[i]) {
+    if (chars[i] !== currChar) {
       const totalChar = totalCurrChar > 1 ? totalCurrChar.toString() : '';
       s += `${currChar}${totalChar}`;
-      totalCurrChar = 0;
+
+      currChar = chars[i];
+      totalCurrChar = 1;
+    } else {
+      totalCurrChar += 1;
     }
-
-    currChar = chars[i];
-    totalCurrChar += 1;
   }
 
-  chars.splice(s.length);
+  const newChars = s.split('');
+  chars.splice(newChars.length);
 
-  for (let j = 0; j < s.length; j++) {
-    chars[j] = s[j];
+  for (let i = 0; i < newChars.length; i++) {
+    chars[i] = newChars[i];
   }
 
-  return chars.length;
+  return s.length;
 }
 
-console.log(compress(['a', 'a', 'b', 'b', 'c', 'c', 'c']));
+const myChars = ['a', 'a', 'b', 'b', 'c', 'c', 'c'];
+
+console.log(compress(myChars));
 console.log(compress(['a']));
 console.log(
   compress(['a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'])
 );
+console.log('🚀 ~ myChars:', myChars);

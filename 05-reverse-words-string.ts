@@ -33,7 +33,7 @@ There is at least one word in s.
 function reverseWords(s: string): string {
   return s
     .split(' ')
-    .filter((word) => word.length)
+    .filter((w) => w)
     .reverse()
     .join(' ');
 }

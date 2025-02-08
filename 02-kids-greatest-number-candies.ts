@@ -37,7 +37,7 @@ n == candies.length
  */
 
 function kidsWithCandies(candies: number[], extraCandies: number): boolean[] {
-  const greatest = Math.max(...candies);
+  const maxNumberOfCandies = Math.max(...candies);
 
-  return candies.map((kid) => kid + extraCandies >= greatest);
+  return candies.map((kid) => kid + extraCandies >= maxNumberOfCandies);
 }

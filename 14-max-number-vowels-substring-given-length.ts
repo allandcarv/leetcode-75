@@ -26,22 +26,28 @@ s consists of lowercase English letters.
  */
 
 function maxVowels(s: string, k: number): number {
-  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
-  let currVowelsCount = 0;
-  let maxVowelsCount = 0;
   let windowStart = 0;
+  let windowEnd = 0;
+  let currVowelsCount = 0;
+  let maxVowelsCount = -Infinity;
+  const vowelRegex = new RegExp(/[aeiou]/, 'i');
 
-  for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
-    if (vowels.has(s[windowEnd])) {
-      currVowelsCount++;
-    }
+  while (windowEnd < s.length) {
+    const isVowel = vowelRegex.test(s[windowEnd]);
+
+    currVowelsCount += isVowel ? 1 : 0;
 
     if (windowEnd - windowStart === k - 1) {
+      const startsWithVowel = vowelRegex.test(s[windowStart]);
+
       maxVowelsCount = Math.max(maxVowelsCount, currVowelsCount);
-      const hasVowelRemoved = vowels.has(s[windowStart]);
-      currVowelsCount = currVowelsCount - (hasVowelRemoved ? 1 : 0);
-      windowStart++;
+
+      currVowelsCount -= startsWithVowel ? 1 : 0;
+
+      windowStart += 1;
     }
+
+    windowEnd += 1;
   }
 
   return maxVowelsCount;

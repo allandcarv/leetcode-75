@@ -24,21 +24,27 @@ s and t consist only of lowercase English letters.
  */
 
 function isSubsequence(s: string, t: string): boolean {
-  let sPtr = 0;
-  let tPtr = 0;
-
-  while (sPtr < s.length && tPtr < t.length) {
-    if (s[sPtr] === t[tPtr]) {
-      sPtr++;
-    }
-
-    tPtr++;
+  if (!s.length) {
+    return true;
   }
 
-  return sPtr === s.length;
+  let sPtr = 0;
+
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] === s[sPtr]) {
+      sPtr += 1;
+
+      if (sPtr === s.length) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 console.log(1, isSubsequence('ace', 'abcde'));
 console.log(2, isSubsequence('aec', 'abcde'));
 console.log(3, isSubsequence('abc', 'ahbgdc'));
 console.log(4, isSubsequence('axc', 'ahbgdc'));
+console.log(4, isSubsequence('acb', 'ahbgdc'));

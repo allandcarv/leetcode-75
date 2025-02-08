@@ -24,14 +24,14 @@ Constraints:
  */
 
 function increasingTriplet(nums: number[]): boolean {
-  let firstValue = Infinity; // 5 - 4 - 3 - 2 - 1
-  let secondValue = Infinity; // Infinity - Infinity - Infinity - Infinity - Infinity
+  let firstNumber = Infinity; // 0
+  let secondNumber = Infinity; // 4
 
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] <= firstValue) {
-      firstValue = nums[i];
-    } else if (nums[i] <= secondValue) {
-      secondValue = nums[i];
+    if (nums[i] <= firstNumber) {
+      firstNumber = nums[i];
+    } else if (nums[i] <= secondNumber) {
+      secondNumber = nums[i];
     } else {
       return true;
     }
