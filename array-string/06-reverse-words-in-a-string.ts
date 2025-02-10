@@ -1,5 +1,5 @@
 /**
- Given an input string s, reverse the order of the words.
+Given an input string s, reverse the order of the words.
 
 A word is defined as a sequence of non-space characters. 
 The words in s will be separated by at least one space.
@@ -28,6 +28,7 @@ Constraints:
 s contains English letters (upper-case and lower-case), digits, and spaces ' '.
 There is at least one word in s.
 
+Follow-up: If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
  */
 
 function reverseWords(s: string): string {
