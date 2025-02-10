@@ -21,26 +21,26 @@ Constraints:
 1 <= nums.length <= 5 * 105
 -231 <= nums[i] <= 231 - 1
 
+Follow up: Could you implement a solution that runs in O(n) time complexity and O(1) space complexity?
  */
 
-function increasingTriplet(nums: number[]): boolean {
-  let firstNumber = Infinity; // 0
-  let secondNumber = Infinity; // 4
+const increasingTriplet = (nums: number[]): boolean => {
+  let firstValue = Infinity;
+  let secondValue = Infinity;
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] <= firstNumber) {
-      firstNumber = nums[i];
-    } else if (nums[i] <= secondNumber) {
-      secondNumber = nums[i];
+  for (const num of nums) {
+    if (num <= firstValue) {
+      firstValue = num;
+    } else if (num <= secondValue) {
+      secondValue = num;
     } else {
       return true;
     }
   }
 
   return false;
-}
+};
 
 console.log(increasingTriplet([1, 2, 3, 4, 5]));
 console.log(increasingTriplet([5, 4, 3, 2, 1]));
 console.log(increasingTriplet([2, 1, 5, 0, 4, 6]));
-console.log(increasingTriplet([20, 100, 10, 12, 5, 13]));
