@@ -1,8 +1,7 @@
 /**
 You are given an integer array nums and an integer k.
 
-In one operation, you can pick two numbers from the 
-array whose sum equals k and remove them from the array.
+In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
 
 Return the maximum number of operations you can perform on the array.
 
@@ -28,34 +27,26 @@ Constraints:
  */
 
 function maxOperations(nums: number[], k: number): number {
-  const diffMap = new Map<number, number>();
-  let operations = 0;
+  let maxOperations = 0;
+  const numbersMap = new Map<number, number>();
 
   for (const num of nums) {
-    if (k > num) {
+    if (num < k) {
       const diff = k - num;
 
-      const diffOccurrences = diffMap.get(diff);
+      const occurrences = numbersMap.get(diff);
 
-      if (diffOccurrences) {
-        operations += 1;
-        diffMap.set(diff, diffOccurrences - 1);
+      if (occurrences) {
+        maxOperations += 1;
+        numbersMap.set(diff, occurrences - 1);
       } else {
-        diffMap.set(num, (diffMap.get(num) ?? 0) + 1);
+        numbersMap.set(num, (numbersMap.get(num) ?? 0) + 1);
       }
     }
   }
 
-  return operations;
+  return maxOperations;
 }
 
-console.log(1, maxOperations([1, 2, 3, 4], 5));
-console.log(2, maxOperations([3, 1, 3, 4, 3], 6));
-console.log(
-  3,
-  maxOperations([4, 4, 1, 3, 1, 3, 2, 2, 5, 5, 1, 5, 2, 1, 2, 3, 5, 4], 2)
-);
-console.log(
-  4,
-  maxOperations([2, 5, 4, 4, 1, 3, 4, 4, 1, 4, 4, 1, 2, 1, 2, 2, 3, 2, 4, 2], 3)
-);
+console.log(maxOperations([1, 2, 3, 4], 5));
+console.log(maxOperations([3, 1, 3, 4, 3], 6));
