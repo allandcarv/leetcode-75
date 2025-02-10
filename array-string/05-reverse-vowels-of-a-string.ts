@@ -1,13 +1,11 @@
 /**
- Given a string s, reverse only all the vowels in the string and return it.
+Given a string s, reverse only all the vowels in the string and return it.
 
-The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower 
-and upper cases, more than once.
+The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
 
 Example 1:
 Input: s = "IceCreAm"
 Output: "AceCreIm"
-
 Explanation:
 The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".
 
@@ -16,17 +14,17 @@ Input: s = "leetcode"
 Output: "leotcede"
 
 Constraints:
-
 1 <= s.length <= 3 * 105
 s consist of printable ASCII characters.
  */
 
 const reverseVowels = (s: string): string => {
-  const reversedVowels = s.match(/[aeiou]/gi);
+  const vowelsRegex = new RegExp(/[aeiou]/, 'ig');
 
-  return s.replace(/[aeiou]/gi, (match) => reversedVowels?.pop() ?? match);
+  const vowels = s.match(vowelsRegex);
+
+  return s.replace(vowelsRegex, (match) => vowels?.pop() ?? match);
 };
 
+console.log(reverseVowels('IceCreAm'));
 console.log(reverseVowels('leetcode'));
-console.log(reverseVowels('xyz'));
-console.log(reverseVowels('a'));
