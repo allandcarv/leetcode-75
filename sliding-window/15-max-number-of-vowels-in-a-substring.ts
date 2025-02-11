@@ -1,6 +1,5 @@
 /**
-Given a string s and an integer k, return the maximum number 
-of vowel letters in any substring of s with length k.
+Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.
 
 Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
 
@@ -26,24 +25,21 @@ s consists of lowercase English letters.
  */
 
 function maxVowels(s: string, k: number): number {
+  const vowelsRegex = new RegExp(/[aeiou]/, 'i');
   let windowStart = 0;
   let windowEnd = 0;
+
+  let maxVowelsCount = Number.MIN_SAFE_INTEGER;
   let currVowelsCount = 0;
-  let maxVowelsCount = -Infinity;
-  const vowelRegex = new RegExp(/[aeiou]/, 'i');
 
-  while (windowEnd < s.length) {
-    const isVowel = vowelRegex.test(s[windowEnd]);
-
-    currVowelsCount += isVowel ? 1 : 0;
+  for (const char of s) {
+    if (vowelsRegex.test(char)) {
+      currVowelsCount += 1;
+    }
 
     if (windowEnd - windowStart === k - 1) {
-      const startsWithVowel = vowelRegex.test(s[windowStart]);
-
       maxVowelsCount = Math.max(maxVowelsCount, currVowelsCount);
-
-      currVowelsCount -= startsWithVowel ? 1 : 0;
-
+      currVowelsCount -= vowelsRegex.test(s[windowStart]) ? 1 : 0;
       windowStart += 1;
     }
 
@@ -53,6 +49,6 @@ function maxVowels(s: string, k: number): number {
   return maxVowelsCount;
 }
 
-console.log(1, maxVowels('abciiidef', 3));
-console.log(2, maxVowels('aeiou', 2));
-console.log(3, maxVowels('leetcode', 2));
+console.log(maxVowels('abciiidef', 3));
+console.log(maxVowels('aeiou', 2));
+console.log(maxVowels('leetcode', 3));
